@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/tca/v1/accounts")
+@RequestMapping
 public class AccountController implements AccountsApi {
 
     private final AccountService accountService;
