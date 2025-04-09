@@ -19,34 +19,34 @@ public class AccountController implements AccountsApi {
     }
 
     @Override
-    @GetMapping("/tca/v1/account")
+    @GetMapping("tca/v1/account")
     public ResponseEntity<List<Account>> getAccounts() {
         return ResponseEntity.ok(accountService.getAllAccounts());
     }
 
     @Override
-    @GetMapping("/tca/v1/account/{id}")
+    @GetMapping("tca/v1/account/{id}")
     public ResponseEntity<Account> getAccountById(Long id) {
         Optional<Account> account = accountService.getAccountById(id);
         return account.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @Override
-    @PostMapping("/tca/v1/account")
+    @PostMapping("tca/v1/account")
     public ResponseEntity<Account> createAccount(Account account) {
         Account createdAccount = accountService.createAccount(account);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdAccount);
     }
 
     @Override
-    @PutMapping("/tca/v1/account/{id}")
+    @PutMapping("tca/v1/account/{id}")
     public ResponseEntity<Account> updateAccount(Long id, Account accountDetails) {
         Optional<Account> updatedAccount = accountService.updateAccount(id, accountDetails);
         return updatedAccount.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @Override
-    @DeleMapping("/tca/v1/account/{id}")
+    @DeleMapping("tca/v1/account/{id}")
     public ResponseEntity<Void> deleteAccount(Long id) {
         boolean deleted = accountService.deleteAccount(id);
         return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
